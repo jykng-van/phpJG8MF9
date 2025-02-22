@@ -35,7 +35,8 @@ function isValidPhoneNumber($phone_number, $customer_id, $api_key) {
         return false; // Unexpected API response
     }
 
-    $valid_types = ["FIXED_LINE", "MOBILE", "VALID"];
+    $valid_types = ["FIXED_LINE", "MOBILE", "VALID"]; //pointed out to be true in the description
+    //And Prepaid, VOIP, Invalid, Payphone and Restricted to be false, there are other types not mentioned like Pager and Toll Free, not mentioned but assumed to be false for this
     //So phonetype is something like {"phone_type": {"code": "2", "description": "MOBILE"}}
     return in_array(strtoupper($data['phone_type']['description']), $valid_types); //changed JSON path because $valid_types values are in description
 }
